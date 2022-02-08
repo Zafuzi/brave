@@ -1,4 +1,4 @@
-let screen = vec(1920, 1080);
+let screen = vec(1600, 900);
 canvas.width = screen.x;
 canvas.height = screen.y;
 
@@ -40,8 +40,6 @@ document.addEventListener("DOMContentLoaded", function()
 			image.y = rect.y;
 			image.width = rect.width;
 			image.height = rect.height;
-
-			console.log(image);
 
 			canvas.style.width = image.width + "px";
 			canvas.style.height = image.height + "px";
