@@ -5,7 +5,11 @@ function slime()
 		"data/player/player_right.png",
 		"data/player/player_left.png",
 		"data/player/player_backward.png",
+		"data/player/player_backward_left.png",
+		"data/player/player_backward_right.png",
 		"data/player/player_forward.png",
+		"data/player/player_forward_left.png",
+		"data/player/player_forward_right.png",
 	];
 	let p_assets = {};
 	load_assets(p_images, [], function(progress, file, asset, type)
@@ -22,7 +26,11 @@ function slime()
 		let p_right = p_assets["data/player/player_right.png"];
 		let p_left = p_assets["data/player/player_left.png"];
 		let p_back = p_assets["data/player/player_backward.png"];
+		let p_back_left = p_assets["data/player/player_backward_left.png"];
+		let p_back_right = p_assets["data/player/player_backward_right.png"];
 		let p_forward = p_assets["data/player/player_forward.png"];
+		let p_forward_left = p_assets["data/player/player_forward_left.png"];
+		let p_forward_right = p_assets["data/player/player_forward_right.png"];
 
 		let left_input = newInputType("left", ["a", "h", "ArrowLeft"]);
 		let right_input = newInputType("right", ["d", "l", "ArrowRight"]);
@@ -36,6 +44,17 @@ function slime()
 
 		sq.listen("tick", function()
 		{
+			if(down_input.pressed)
+			{
+				sq.image = p_forward;
+				sq.velocity.y = sq.speed;
+			}
+			if(up_input.pressed)
+			{
+				sq.image = p_back;
+				sq.velocity.y = -sq.speed;
+			}
+
 			if(left_input.pressed)
 			{
 				sq.image = p_left;
@@ -47,15 +66,22 @@ function slime()
 				sq.velocity.x = sq.speed;
 			}
 
-			if(down_input.pressed)
+			if(right_input.pressed && down_input.pressed)
 			{
-				sq.image = p_forward;
-				sq.velocity.y = sq.speed;
+				sq.image = p_forward_right;
 			}
-			if(up_input.pressed)
+			if(left_input.pressed && down_input.pressed)
 			{
-				sq.image = p_back;
-				sq.velocity.y = -sq.speed;
+				sq.image = p_forward_left;
+			}
+
+			if(right_input.pressed && up_input.pressed)
+			{
+				sq.image = p_back_right;
+			}
+			if(left_input.pressed && up_input.pressed)
+			{
+				sq.image = p_back_left;
 			}
 
 			sq.velocity.x *= 0.90;
