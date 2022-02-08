@@ -1,4 +1,4 @@
-let screen = vec(1600, 900);
+let screen = vec(1920, 1080);
 canvas.width = screen.x;
 canvas.height = screen.y;
 

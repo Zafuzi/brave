@@ -4,7 +4,7 @@ function slime()
 	let p_images = [
 		"data/player/player_right.png",
 		"data/player/player_left.png",
-		"data/player/player_back.png",
+		"data/player/player_backward.png",
 		"data/player/player_forward.png",
 	];
 	let p_assets = {};
@@ -21,7 +21,7 @@ function slime()
 	{
 		let p_right = p_assets["data/player/player_right.png"];
 		let p_left = p_assets["data/player/player_left.png"];
-		let p_back = p_assets["data/player/player_back.png"];
+		let p_back = p_assets["data/player/player_backward.png"];
 		let p_forward = p_assets["data/player/player_forward.png"];
 
 		let left_input = newInputType("left", ["a", "h", "ArrowLeft"]);
@@ -60,6 +60,11 @@ function slime()
 
 			sq.velocity.x *= 0.90;
 			sq.velocity.y *= 0.90;
+
+			if(abs(sq.velocity.x) < 0.01 && abs(sq.velocity.y) < 0.01)
+			{
+				sq.image = p_forward
+			}
 		});
 	}
 }
